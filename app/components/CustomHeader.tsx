@@ -9,11 +9,11 @@ import { Colors, Icons } from '../theme';
 //   onLeftPress: () => void
 // }
 
-// interface CustomHeaderPropTypes {
-//   title?: string,
-//   leftIcon: string,
-//   onLeftPress: () => void
-// }
+interface CustomHeaderPropTypes {
+  title?: string,
+  leftIcon: string,
+  onLeftPress: () => void
+}
 
 const RenderLeftComponent = ({ leftIcon, onLeftPress }) => (
   <Pressable style={styles.leftBg} onPress={onLeftPress}>

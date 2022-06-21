@@ -14,7 +14,7 @@ import styles from './styles/ListStyles';
 
 const ListScreen = () => {
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState();
+  const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {

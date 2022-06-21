@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { scale, verticalScale, Colors, Metrics, Fonts } from '../../../theme';
+import { scale, verticalScale, Colors, Metrics, Fonts, moderateScale } from '../../../theme';
 
 export default StyleSheet.create({
   floatingButtonBg: {
@@ -107,5 +107,13 @@ export default StyleSheet.create({
     marginTop: verticalScale(5),
     width: Metrics.screenWidth * 0.95,
     alignSelf: 'center'
+  },
+  buttonStyle: {
+    backgroundColor: Colors.cyanBlue,
+    width: moderateScale(315),
+    borderRadius: 15
+  },
+  buttonText: {
+    color: Colors.ivory
   }
 });

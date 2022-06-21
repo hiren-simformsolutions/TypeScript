@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
+import SpinnerButton from 'react-native-spinner-button';
 import {
   CustomHeader,
   ListItem,
@@ -13,6 +14,7 @@ import styles from './styles/ListStyles';
 
 const ListScreen = () => {
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -23,6 +25,13 @@ const ListScreen = () => {
 
   const goToHomeScreen = () => {
     navigation.navigate('Launch')
+  }
+
+  const refreshPage =() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
   }
 
   return (
@@ -43,6 +52,15 @@ const ListScreen = () => {
               data={StaticData.bookBitesData}
               renderItem={({ item }) => <ListItem item={item} />}
               ItemSeparatorComponent={() => <View style={styles.seperator} />}
+              ListFooterComponent={
+              <SpinnerButton
+                buttonStyle={styles.buttonStyle}
+                isLoading={refreshing}
+                onPress={refreshPage}
+                indicatorCount={10}
+              >
+                <Text style={styles.buttonText}>Refresh List</Text>
+              </SpinnerButton>}
             />
           )}
         </>

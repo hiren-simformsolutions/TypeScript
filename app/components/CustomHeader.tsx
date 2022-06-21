@@ -1,22 +1,31 @@
 import React from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
+import { View, Text, Pressable, Image, ImageProps } from 'react-native';
 import styles from './styles/CustomHeaderStyles';
 import LinearGradient from 'react-native-linear-gradient';
-import { Colors } from '../theme';
+import { Colors, Icons } from '../theme';
 
-const RenderLeftComponent = ({ leftText, leftIcon, onLeftPress }) => (
+interface RenderLeftComponentProps {
+  leftIcon: string,
+  onLeftPress: () => void
+}
+
+interface CustomHeaderPropTypes {
+  title?: string,
+  leftIcon: string,
+  onLeftPress: () => void
+}
+
+const RenderLeftComponent = ({ leftIcon, onLeftPress }: RenderLeftComponentProps) => (
   <Pressable style={styles.leftBg} onPress={onLeftPress}>
-    {leftText && <Text style={styles.headerText}>{leftText}</Text>}
-    {leftIcon && <Image source={leftIcon} style={styles.leftIcon} />}
+    {leftIcon && <Image source={leftIcon ? leftIcon : Icons.backArrow} style={styles.leftIcon} />}
   </Pressable>
 );
 
 const CustomHeader = ({
   title,
-  leftText,
   leftIcon,
   onLeftPress
-}) => {
+}: CustomHeaderPropTypes) => {
   return (
     <LinearGradient
       useAngle
@@ -28,7 +37,6 @@ const CustomHeader = ({
     >
       <>
         <RenderLeftComponent
-          leftText={leftText}
           leftIcon={leftIcon}
           onLeftPress={onLeftPress}
         />

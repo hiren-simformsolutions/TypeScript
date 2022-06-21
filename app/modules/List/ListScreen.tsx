@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import {
@@ -7,11 +8,12 @@ import {
   HorizontalListContentLoader,
 } from '../../components';
 import { StaticData } from '../../constant';
-import { Metrics } from '../../theme';
+import { Icons, Metrics } from '../../theme';
 import styles from './styles/ListStyles';
 
 const ListScreen = () => {
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,11 +21,15 @@ const ListScreen = () => {
     }, 1000);
   }, []);
 
+  const goToHomeScreen = () => {
+    navigation.navigate('Launch')
+  }
+
   return (
     <ScreenContainer
       renderContent={() => (
         <>
-          <CustomHeader title={'List'} />
+          <CustomHeader title={'List'} leftIcon={Icons.backArrow} onLeftPress={goToHomeScreen} />
           {loading ? (
             <HorizontalListContentLoader
               containerWidth={Metrics.screenWidth * 0.95}

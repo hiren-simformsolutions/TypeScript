@@ -9,12 +9,18 @@ const LaunchScreen = () => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
 
+  const moveToListScreen = () => {
+    navigation.navigate('List')
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      navigation.navigate('List');
+      moveToListScreen();
     }, 1000);
   }, [navigation]);
+
+
 
   return (
     <ScreenContainer
@@ -27,7 +33,7 @@ const LaunchScreen = () => {
             </>
           ) : (
             <>
-              <Text style={styles.label}>Let's Go..!!</Text>
+              <Text style={styles.label} onPress={moveToListScreen}>Let's Go..!!</Text>
             </>
           )}
         </View>
